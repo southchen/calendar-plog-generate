@@ -19,39 +19,52 @@ export default function CalendarGrid() {
   return (
     <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
       <div
-        className="bg-white/85 backdrop-blur-md rounded-2xl shadow-lg p-5 pointer-events-auto"
-        style={{ minWidth: 340 }}
+        className="pointer-events-auto rounded-3xl p-8"
+        style={{
+          backgroundColor: 'rgba(250, 247, 243, 0.92)',
+          backdropFilter: 'blur(12px)',
+          boxShadow: '0 4px 24px rgba(0,0,0,0.06)',
+          width: 680,
+        }}
       >
         {/* Header */}
-        <div className="flex items-center justify-between mb-4">
+        <div className="flex items-center justify-between mb-5">
           <button
             onClick={prevMonth}
-            className="text-gray-500 hover:text-gray-800 text-lg px-2 cursor-pointer"
+            className="text-lg px-2 cursor-pointer"
+            style={{ color: '#a89585' }}
           >
             &lsaquo;
           </button>
           <div className="text-center">
-            <span className="text-sm text-gray-400">{year}</span>
-            <h2 className="text-xl font-semibold text-gray-800 -mt-0.5">
+            <span className="text-sm" style={{ color: '#b8a898' }}>{year}</span>
+            <h2 className="text-xl font-semibold -mt-0.5" style={{ color: '#6b5b4f' }}>
               {MONTH_NAMES[month]}
             </h2>
           </div>
           <button
             onClick={nextMonth}
-            className="text-gray-500 hover:text-gray-800 text-lg px-2 cursor-pointer"
+            className="text-lg px-2 cursor-pointer"
+            style={{ color: '#a89585' }}
           >
             &rsaquo;
           </button>
         </div>
 
         {/* Day headers */}
-        <div className="grid grid-cols-7 gap-1 mb-1">
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(7, 1fr)',
+            gap: 8,
+            marginBottom: 8,
+          }}
+        >
           {DAY_HEADERS.map((d, i) => (
             <div
-              key={d}
-              className={`text-xs font-medium text-center py-1 ${
-                i === 0 ? 'text-red-400' : i === 6 ? 'text-blue-400' : 'text-gray-400'
-              }`}
+              key={i}
+              className="text-center font-semibold text-sm"
+              style={{ color: '#a89585', padding: '4px 0' }}
             >
               {d}
             </div>
@@ -60,21 +73,29 @@ export default function CalendarGrid() {
 
         {/* Date cells */}
         {weeks.map((week, wi) => (
-          <div key={wi} className="grid grid-cols-7 gap-1">
+          <div
+            key={wi}
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(7, 1fr)',
+              gap: 8,
+              marginBottom: 8,
+            }}
+          >
             {week.map((cell, di) => (
               <div
                 key={di}
-                className={`text-sm text-center py-1.5 rounded-lg ${
-                  cell.day === null
-                    ? ''
-                    : cell.isToday
-                      ? 'bg-gray-800 text-white font-bold'
-                      : di === 0
-                        ? 'text-red-500'
-                        : di === 6
-                          ? 'text-blue-500'
-                          : 'text-gray-700'
-                }`}
+                className="flex pt-1 items-top justify-center rounded-2xl text-lg font-medium"
+                style={{
+                  aspectRatio: '1 / 1',
+                  minHeight: 56,
+                  backgroundColor: cell.day !== null
+                    ? (cell.isToday ? '#c4b09a' : '#ede8e2')
+                    : 'transparent',
+                  color: cell.day !== null
+                    ? (cell.isToday ? '#fff' : '#6b5b4f')
+                    : 'transparent',
+                }}
               >
                 {cell.day ?? ''}
               </div>

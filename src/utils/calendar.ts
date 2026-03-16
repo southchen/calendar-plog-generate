@@ -1,4 +1,4 @@
-export const DAY_HEADERS = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+export const DAY_HEADERS = ['M', 'T', 'W', 'T', 'F', 'S', 'S'];
 
 export const MONTH_NAMES = [
   'January', 'February', 'March', 'April', 'May', 'June',
@@ -12,7 +12,9 @@ export interface CalendarCell {
 
 export function generateMonthGrid(year: number, month: number): CalendarCell[][] {
   const today = new Date();
-  const firstDay = new Date(year, month, 1).getDay();
+  // Convert Sunday=0 to Monday-based: Mon=0, Tue=1, ..., Sun=6
+  const firstDaySun = new Date(year, month, 1).getDay();
+  const firstDay = firstDaySun === 0 ? 6 : firstDaySun - 1;
   const daysInMonth = new Date(year, month + 1, 0).getDate();
 
   const weeks: CalendarCell[][] = [];
