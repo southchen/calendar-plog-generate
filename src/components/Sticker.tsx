@@ -42,13 +42,15 @@ export default function Sticker({ sticker }: Props) {
         />
         {!state.isExporting && (
           <button
+            onMouseDown={(e) => e.stopPropagation()}
+            onPointerDown={(e) => e.stopPropagation()}
             onClick={(e) => {
               e.stopPropagation();
               dispatch({ type: 'REMOVE_STICKER', id: sticker.id });
             }}
             className="absolute -top-2 -right-2 w-5 h-5 bg-red-500 text-white rounded-full text-xs
                        flex items-center justify-center opacity-0 group-hover:opacity-100
-                       transition-opacity cursor-pointer shadow"
+                       transition-opacity cursor-pointer shadow z-50"
           >
             x
           </button>
