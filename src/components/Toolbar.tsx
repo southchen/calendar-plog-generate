@@ -26,9 +26,25 @@ export default function Toolbar({ onExport }: Props) {
     }
   };
 
+  const btnBase =
+    'px-4 py-2 text-sm transition-opacity duration-300 ease-out cursor-pointer rounded-sm';
+  const btnSecondary = `${btnBase} border`;
+  const btnPrimary = `${btnBase} text-white`;
+
   return (
-    <div className="flex items-center gap-3 p-4 bg-white border-b border-gray-200 shadow-sm">
-      <h1 className="text-lg font-semibold text-gray-800 mr-auto">Cal Plog</h1>
+    <div
+      className="flex items-center gap-4 px-8 py-4"
+      style={{
+        backgroundColor: 'var(--color-surface)',
+        borderBottom: '1px solid var(--color-border)',
+      }}
+    >
+      <h1
+        className="font-serif-display text-lg font-medium mr-auto"
+        style={{ color: 'var(--color-accent)' }}
+      >
+        Cal Plog
+      </h1>
 
       <input
         ref={bgInputRef}
@@ -39,8 +55,11 @@ export default function Toolbar({ onExport }: Props) {
       />
       <button
         onClick={() => bgInputRef.current?.click()}
-        className="px-3 py-1.5 bg-gray-100 text-gray-700 text-sm rounded-lg
-                   hover:bg-gray-200 transition-colors cursor-pointer"
+        className={btnSecondary}
+        style={{
+          color: 'var(--color-text)',
+          borderColor: 'var(--color-border)',
+        }}
       >
         Set Background
       </button>
@@ -57,16 +76,19 @@ export default function Toolbar({ onExport }: Props) {
       />
       <button
         onClick={() => stickerInputRef.current?.click()}
-        className="px-3 py-1.5 bg-gray-100 text-gray-700 text-sm rounded-lg
-                   hover:bg-gray-200 transition-colors cursor-pointer"
+        className={btnSecondary}
+        style={{
+          color: 'var(--color-text)',
+          borderColor: 'var(--color-border)',
+        }}
       >
         Upload Sticker
       </button>
 
       <button
         onClick={onExport}
-        className="px-3 py-1.5 bg-emerald-500 text-white text-sm rounded-lg
-                   hover:bg-emerald-600 transition-colors cursor-pointer"
+        className={btnPrimary}
+        style={{ backgroundColor: 'var(--color-accent)' }}
       >
         Save Image
       </button>

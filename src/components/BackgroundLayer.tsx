@@ -38,7 +38,7 @@ export default function BackgroundLayer() {
 
   if (!state.backgroundImage) {
     return (
-      <div className="absolute inset-0 bg-linear-to-br from-amber-50 via-orange-50 to-rose-50" />
+      <div className="absolute inset-0" style={{ backgroundColor: 'var(--color-surface)' }} />
     );
   }
 
@@ -51,6 +51,7 @@ export default function BackgroundLayer() {
       draggable={false}
       style={{
         objectPosition: `calc(50% + ${state.backgroundPosition.x}px) calc(50% + ${state.backgroundPosition.y}px)`,
+        filter: 'sepia(20%)',
       }}
       onPointerDown={onPointerDown}
       onPointerMove={onPointerMove}

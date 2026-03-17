@@ -11,7 +11,8 @@ const CalendarCanvas = forwardRef<HTMLDivElement>((_props, ref) => {
     <div className="flex-1 flex items-center justify-center p-4 overflow-auto">
       <div
         ref={ref}
-        className="relative overflow-hidden rounded-lg shadow-2xl flex-shrink-0"
+        className="relative overflow-hidden rounded-sm shrink-0"
+        style={{ border: '1px solid var(--color-border)' }}
         style={{ width: CANVAS_WIDTH, height: CANVAS_HEIGHT }}
       >
         <BackgroundLayer />

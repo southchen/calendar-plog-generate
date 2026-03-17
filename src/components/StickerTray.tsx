@@ -18,20 +18,24 @@ export default function StickerTray() {
 
   if (state.trayItems.length === 0) {
     return (
-      <div className="text-gray-400 text-sm text-center py-8">
+      <div className="text-sm text-center py-8" style={{ color: 'var(--color-muted)' }}>
         Upload photos to extract stickers
       </div>
     );
   }
 
   return (
-    <div className="grid grid-cols-3 gap-2">
+    <div className="grid grid-cols-3 gap-3">
       {state.trayItems.map((url, i) => (
         <button
           key={i}
           onClick={() => placeSticker(url)}
-          className="aspect-square bg-gray-100 rounded-lg p-2 hover:bg-gray-200
-                     transition-colors cursor-pointer border border-gray-200"
+          className="aspect-square rounded-sm p-2 transition-opacity duration-300 ease-out
+                     hover:opacity-70 cursor-pointer"
+          style={{
+            backgroundColor: 'var(--color-bg)',
+            border: '1px solid var(--color-border)',
+          }}
           title="Click to place on canvas"
         >
           <img src={url} alt="sticker" className="w-full h-full object-contain" />

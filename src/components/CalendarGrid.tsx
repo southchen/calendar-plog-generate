@@ -19,33 +19,41 @@ export default function CalendarGrid() {
   return (
     <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
       <div
-        className="pointer-events-auto rounded-3xl p-8"
+        className="pointer-events-auto rounded-sm p-8"
         style={{
-          backgroundColor: 'rgba(250, 247, 243, 0.92)',
+          backgroundColor: 'rgba(245, 240, 232, 0.92)',
           backdropFilter: 'blur(12px)',
-          boxShadow: '0 4px 24px rgba(0,0,0,0.06)',
+          border: '1px solid var(--color-border)',
           width: 680,
         }}
       >
         {/* Header */}
-        <div className="flex items-center justify-between mb-5">
+        <div className="flex items-center justify-between mb-6">
           <button
             onClick={prevMonth}
-            className="text-lg px-2 cursor-pointer"
-            style={{ color: '#a89585' }}
+            className="text-lg px-2 cursor-pointer transition-opacity duration-300 ease-out hover:opacity-60"
+            style={{ color: 'var(--color-muted)' }}
           >
             &lsaquo;
           </button>
           <div className="text-center">
-            <span className="text-sm" style={{ color: '#b8a898' }}>{year}</span>
-            <h2 className="text-xl font-semibold -mt-0.5" style={{ color: '#6b5b4f' }}>
+            <span
+              className="font-serif-en text-sm"
+              style={{ color: 'var(--color-muted)' }}
+            >
+              {year}
+            </span>
+            <h2
+              className="font-serif-display text-xl font-medium -mt-0.5"
+              style={{ color: 'var(--color-accent)' }}
+            >
               {MONTH_NAMES[month]}
             </h2>
           </div>
           <button
             onClick={nextMonth}
-            className="text-lg px-2 cursor-pointer"
-            style={{ color: '#a89585' }}
+            className="text-lg px-2 cursor-pointer transition-opacity duration-300 ease-out hover:opacity-60"
+            style={{ color: 'var(--color-muted)' }}
           >
             &rsaquo;
           </button>
@@ -63,8 +71,8 @@ export default function CalendarGrid() {
           {DAY_HEADERS.map((d, i) => (
             <div
               key={i}
-              className="text-center font-semibold text-sm"
-              style={{ color: '#a89585', padding: '4px 0' }}
+              className="text-center font-medium text-sm"
+              style={{ color: 'var(--color-muted)', padding: '4px 0' }}
             >
               {d}
             </div>
@@ -85,15 +93,15 @@ export default function CalendarGrid() {
             {week.map((cell, di) => (
               <div
                 key={di}
-                className="flex pt-1 items-top justify-center rounded-2xl text-lg font-medium"
+                className="font-serif-en flex pt-1 items-top justify-center rounded-sm text-lg font-medium"
                 style={{
                   aspectRatio: '1 / 1',
                   minHeight: 56,
                   backgroundColor: cell.day !== null
-                    ? (cell.isToday ? '#c4b09a' : '#ede8e2')
+                    ? (cell.isToday ? 'var(--color-accent)' : 'var(--color-surface)')
                     : 'transparent',
                   color: cell.day !== null
-                    ? (cell.isToday ? '#fff' : '#6b5b4f')
+                    ? (cell.isToday ? '#F5F0E8' : 'var(--color-text)')
                     : 'transparent',
                 }}
               >

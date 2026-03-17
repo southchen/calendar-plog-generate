@@ -48,9 +48,14 @@ export default function Sticker({ sticker }: Props) {
               e.stopPropagation();
               dispatch({ type: 'REMOVE_STICKER', id: sticker.id });
             }}
-            className="absolute -top-2 -right-2 w-5 h-5 bg-red-500 text-white rounded-full text-xs
+            className="absolute -top-2 -right-2 w-5 h-5 rounded-full text-xs
                        flex items-center justify-center opacity-0 group-hover:opacity-100
-                       transition-opacity cursor-pointer shadow z-50"
+                       transition-opacity duration-300 ease-out cursor-pointer z-50"
+            style={{
+              backgroundColor: 'var(--color-accent)',
+              color: 'var(--color-bg)',
+              border: '1px solid var(--color-border)',
+            }}
           >
             x
           </button>
