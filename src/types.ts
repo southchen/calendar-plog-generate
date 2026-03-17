@@ -12,6 +12,7 @@ export interface AppState {
   year: number;
   month: number; // 0-indexed
   backgroundImage: string | null;
+  backgroundPosition: { x: number; y: number };
   stickers: StickerData[];
   trayItems: string[]; // extracted image URLs
   nextZIndex: number;
@@ -21,6 +22,7 @@ export interface AppState {
 export type AppAction =
   | { type: 'SET_MONTH'; year: number; month: number }
   | { type: 'SET_BACKGROUND'; imageUrl: string }
+  | { type: 'SET_BACKGROUND_POSITION'; x: number; y: number }
   | { type: 'ADD_TRAY_ITEM'; imageUrl: string }
   | { type: 'REMOVE_TRAY_ITEM'; imageUrl: string }
   | { type: 'PLACE_STICKER'; imageUrl: string; x: number; y: number; width: number; height: number }

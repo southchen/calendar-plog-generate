@@ -7,6 +7,7 @@ const initialState: AppState = {
   year: now.getFullYear(),
   month: now.getMonth(),
   backgroundImage: null,
+  backgroundPosition: { x: 0, y: 0 },
   stickers: [],
   trayItems: [],
   nextZIndex: 1,
@@ -18,7 +19,9 @@ function reducer(state: AppState, action: AppAction): AppState {
     case 'SET_MONTH':
       return { ...state, year: action.year, month: action.month };
     case 'SET_BACKGROUND':
-      return { ...state, backgroundImage: action.imageUrl };
+      return { ...state, backgroundImage: action.imageUrl, backgroundPosition: { x: 0, y: 0 } };
+    case 'SET_BACKGROUND_POSITION':
+      return { ...state, backgroundPosition: { x: action.x, y: action.y } };
     case 'ADD_TRAY_ITEM':
       return { ...state, trayItems: [...state.trayItems, action.imageUrl] };
     case 'REMOVE_TRAY_ITEM':
