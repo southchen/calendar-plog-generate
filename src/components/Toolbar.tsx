@@ -1,29 +1,21 @@
 import { useRef } from 'react';
 import { useAppContext } from '../context/AppContext';
 import { fileToDataUrl } from '../utils/image';
-import PhotoUploader from './PhotoUploader';
+import ShareButton from './ShareButton';
 
 interface Props {
   onExport: () => void;
+  onCapture: () => Promise<Blob | null>;
 }
 
-export default function Toolbar({ onExport }: Props) {
+export default function Toolbar({ onExport, onCapture }: Props) {
   const { dispatch } = useAppContext();
   const bgInputRef = useRef<HTMLInputElement>(null);
-  const stickerInputRef = useRef<HTMLInputElement>(null);
 
   const handleBgUpload = async (files: FileList | null) => {
     if (!files?.[0]) return;
     const dataUrl = await fileToDataUrl(files[0]);
     dispatch({ type: 'SET_BACKGROUND', imageUrl: dataUrl });
-  };
-
-  const handleStickerUpload = async (files: FileList | null) => {
-    if (!files) return;
-    for (const file of Array.from(files)) {
-      const dataUrl = await fileToDataUrl(file);
-      dispatch({ type: 'ADD_TRAY_ITEM', imageUrl: dataUrl });
-    }
   };
 
   return (
@@ -45,24 +37,6 @@ export default function Toolbar({ onExport }: Props) {
         Set Background
       </button>
 
-      <PhotoUploader />
-
-      <input
-        ref={stickerInputRef}
-        type="file"
-        accept="image/*"
-        multiple
-        className="hidden"
-        onChange={(e) => handleStickerUpload(e.target.files)}
-      />
-      <button
-        onClick={() => stickerInputRef.current?.click()}
-        className="px-3 py-1.5 bg-bg text-ink text-sm rounded-md
-                   hover:bg-border transition-colors duration-default ease-default cursor-pointer font-body"
-      >
-        Upload Sticker
-      </button>
-
       <button
         onClick={onExport}
         className="px-3 py-1.5 bg-accent text-white text-sm rounded-md
@@ -70,6 +44,8 @@ export default function Toolbar({ onExport }: Props) {
       >
         Save Image
       </button>
+
+      <ShareButton onCapture={onCapture} />
     </div>
   );
 }

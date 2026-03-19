@@ -1,9 +1,25 @@
 import { useCallback, type RefObject } from 'react';
-import { toPng } from 'html-to-image';
+import { toBlob, toPng } from 'html-to-image';
 import { useAppContext } from '../context/AppContext';
 
 export function useExport(canvasRef: RefObject<HTMLDivElement | null>) {
   const { dispatch } = useAppContext();
+
+  const captureBlob = useCallback(async (): Promise<Blob | null> => {
+    if (!canvasRef.current) return null;
+    dispatch({ type: 'SET_EXPORTING', isExporting: true });
+    await new Promise((r) => setTimeout(r, 100));
+
+    try {
+      const blob = await toBlob(canvasRef.current, {
+        pixelRatio: 2,
+        cacheBust: true,
+      });
+      return blob;
+    } finally {
+      dispatch({ type: 'SET_EXPORTING', isExporting: false });
+    }
+  }, [canvasRef, dispatch]);
 
   const exportPng = useCallback(async () => {
     if (!canvasRef.current) return;
@@ -26,5 +42,5 @@ export function useExport(canvasRef: RefObject<HTMLDivElement | null>) {
     }
   }, [canvasRef, dispatch]);
 
-  return { exportPng };
+  return { exportPng, captureBlob };
 }

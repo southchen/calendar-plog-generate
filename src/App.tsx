@@ -7,11 +7,11 @@ import { useExport } from './hooks/useExport';
 
 function AppContent() {
   const canvasRef = useRef<HTMLDivElement>(null);
-  const { exportPng } = useExport(canvasRef);
+  const { exportPng, captureBlob } = useExport(canvasRef);
 
   return (
     <div className="h-screen flex flex-col bg-bg">
-      <Toolbar onExport={exportPng} />
+      <Toolbar onExport={exportPng} onCapture={captureBlob} />
       <div className="flex flex-1 overflow-hidden">
         <CalendarCanvas ref={canvasRef} />
         <div className="w-64 bg-surface border-l border-border p-4 overflow-y-auto flex-shrink-0">

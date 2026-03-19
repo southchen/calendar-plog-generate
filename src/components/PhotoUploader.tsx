@@ -28,8 +28,8 @@ export default function PhotoUploader() {
       <button
         onClick={() => inputRef.current?.click()}
         disabled={isProcessing}
-        className="px-3 py-1.5 bg-accent text-white text-sm rounded-md hover:opacity-90
-                   disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-default ease-default cursor-pointer font-body"
+        className="w-full px-3 py-1.5 bg-bg text-ink text-sm rounded-md hover:bg-border
+                   disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-default ease-default cursor-pointer font-body border border-border"
       >
         {isProcessing ? `Extracting... ${Math.round(progress * 100)}%` : 'Upload Photo'}
       </button>
