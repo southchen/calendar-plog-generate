@@ -19,11 +19,11 @@ export default function CalendarGrid() {
   return (
     <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
       <div
-        className="pointer-events-auto rounded-3xl p-8"
+        className="pointer-events-auto rounded-lg p-8"
         style={{
-          backgroundColor: 'rgba(250, 247, 243, 0.92)',
+          backgroundColor: 'rgba(250, 250, 248, 0.92)',
           backdropFilter: 'blur(12px)',
-          boxShadow: '0 4px 24px rgba(0,0,0,0.06)',
+          boxShadow: '0 4px 16px rgba(0,0,0,0.10)',
           width: 680,
         }}
       >
@@ -32,20 +32,20 @@ export default function CalendarGrid() {
           <button
             onClick={prevMonth}
             className="text-lg px-2 cursor-pointer"
-            style={{ color: '#a89585' }}
+            style={{ color: '#7E8C82' }}
           >
             &lsaquo;
           </button>
           <div className="text-center">
-            <span className="text-sm" style={{ color: '#b8a898' }}>{year}</span>
-            <h2 className="text-xl font-semibold -mt-0.5" style={{ color: '#6b5b4f' }}>
+            <span className="text-sm" style={{ color: '#7E8C82' }}>{year}</span>
+            <h2 className="text-xl font-semibold -mt-0.5" style={{ color: '#26332A', fontFamily: 'var(--font-display)' }}>
               {MONTH_NAMES[month]}
             </h2>
           </div>
           <button
             onClick={nextMonth}
             className="text-lg px-2 cursor-pointer"
-            style={{ color: '#a89585' }}
+            style={{ color: '#7E8C82' }}
           >
             &rsaquo;
           </button>
@@ -63,8 +63,8 @@ export default function CalendarGrid() {
           {DAY_HEADERS.map((d, i) => (
             <div
               key={i}
-              className="text-center font-semibold text-sm"
-              style={{ color: '#a89585', padding: '4px 0' }}
+              className="text-center font-medium text-sm"
+              style={{ color: '#7E8C82', padding: '4px 0' }}
             >
               {d}
             </div>
@@ -85,15 +85,15 @@ export default function CalendarGrid() {
             {week.map((cell, di) => (
               <div
                 key={di}
-                className="flex pt-1 items-top justify-center rounded-2xl text-lg font-medium"
+                className="flex pt-1 items-top justify-center rounded-md text-lg font-medium"
                 style={{
                   aspectRatio: '1 / 1',
                   minHeight: 56,
                   backgroundColor: cell.day !== null
-                    ? (cell.isToday ? '#c4b09a' : '#ede8e2')
+                    ? (cell.isToday ? '#0F4C81' : 'rgba(38, 51, 42, 0.06)')
                     : 'transparent',
                   color: cell.day !== null
-                    ? (cell.isToday ? '#fff' : '#6b5b4f')
+                    ? (cell.isToday ? '#FAFAF8' : '#26332A')
                     : 'transparent',
                 }}
               >

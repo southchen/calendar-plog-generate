@@ -27,8 +27,8 @@ export default function Toolbar({ onExport }: Props) {
   };
 
   return (
-    <div className="flex items-center gap-3 p-4 bg-white border-b border-gray-200 shadow-sm">
-      <h1 className="text-lg font-semibold text-gray-800 mr-auto">Cal Plog</h1>
+    <div className="flex items-center gap-3 p-4 bg-surface border-b border-border shadow-sm transition-all duration-default ease-default">
+      <h1 className="text-lg font-semibold text-ink mr-auto font-display">Cal Plog</h1>
 
       <input
         ref={bgInputRef}
@@ -39,8 +39,8 @@ export default function Toolbar({ onExport }: Props) {
       />
       <button
         onClick={() => bgInputRef.current?.click()}
-        className="px-3 py-1.5 bg-gray-100 text-gray-700 text-sm rounded-lg
-                   hover:bg-gray-200 transition-colors cursor-pointer"
+        className="px-3 py-1.5 bg-bg text-ink text-sm rounded-md
+                   hover:bg-border transition-colors duration-default ease-default cursor-pointer font-body"
       >
         Set Background
       </button>
@@ -57,16 +57,16 @@ export default function Toolbar({ onExport }: Props) {
       />
       <button
         onClick={() => stickerInputRef.current?.click()}
-        className="px-3 py-1.5 bg-gray-100 text-gray-700 text-sm rounded-lg
-                   hover:bg-gray-200 transition-colors cursor-pointer"
+        className="px-3 py-1.5 bg-bg text-ink text-sm rounded-md
+                   hover:bg-border transition-colors duration-default ease-default cursor-pointer font-body"
       >
         Upload Sticker
       </button>
 
       <button
         onClick={onExport}
-        className="px-3 py-1.5 bg-emerald-500 text-white text-sm rounded-lg
-                   hover:bg-emerald-600 transition-colors cursor-pointer"
+        className="px-3 py-1.5 bg-accent text-white text-sm rounded-md
+                   hover:opacity-90 transition-colors duration-default ease-default cursor-pointer font-body"
       >
         Save Image
       </button>
